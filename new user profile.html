@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy Profile</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f9f0ff 0%, #e6f7ff 100%);
+            font-family: Arial, sans-serif;
+        }
+        .wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+        }
+        .wave path {
+            fill: #fd5ae2;
+        }     
+        .icons {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10;
+            background-color: #fd5ae2;
+            padding: 5px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+          
+        .icon-container a {
+            color: #fff;
+            text-decoration: none;
+           
+        }
+        .icon-container img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-bottom: 3px;
+        }
+        
+        
+        .profile-container {
+            width: 60%;
+            height: 40%;
+            margin: 170px auto;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+       
+        .profile-header {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .profile-section {
+            margin-bottom: 5px;
+        }
+        .profile-section h2 {
+            margin-top: 0;
+        }
+        .profile-info {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="date"], input[type="number"] {
+            width: 60%;
+            height: 30px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid cornsilk;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #fd5ae2;
+            color: #fff;
+            padding: 10px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #fd5ae2;
+        }
+    </style>
+</head>
+<body>
+    <svg class="wave" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path d="M0,256L48,229.3C96,203,192,149,288,122.7C384,96,480,96,576,117.3C672,139,768,181,864,192C960,203,1056,181,1152,170.7C1248,160,1344,160,1392,160L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+    </svg>
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1>Pregnancy Profile</h1>
+        </div>
+        <form id="profile-form">
+            <div class="profile-section">
+                <h4>Pregnancy Journey</h4>
+                <label for="weeks-pregnant">Weeks Pregnant:</label>
+                <input type="number" id="weeks-pregnant" name="weeks-pregnant">
+                <label for="due-date">Due Date:</label>
+                <input type="date" id="due-date" name="due-date">
+                <label for="baby-name">Baby's Name:</label>
+                <input type="text" id="baby-name" name="baby-name">
+            </div>
+            <div class="profile-section">
+                <h4>About Me</h4>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" name="height">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" step="0.1">
+                <label for="blood-type">Blood Type:</label>
+                <select id="blood-type" name="blood-type">
+                    <option value="">Select Blood Type</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+            <button type="submit">Save Profile</button>
+        </form>
+        <div id="profile-display" style="display: none;">
+            <div class="profile-section">
+                <h4>Pregnancy Journey</h4>
+                <p class="profile-info">Weeks Pregnant: <span id="display-weeks-pregnant"></span></p>
+                <p class="profile-info">Due Date: <span id="display-due-date"></span></p>
+                <p class="profile-info">Baby's Name: <span id="display-baby-name"></span></p>
+            </div>
+            <div class="profile-section">
+                <h4>About Me</h4>
+                <p class="profile-info">Age: <span id="display-age"></span></p>
+                <p class="profile-info">Height: <span id="display-height"></span> cm</p>
+                <p class="profile-info">Weight: <span id="display-weight"></span> kg</p>
+                <p class="profile-info">Blood Type: <span id="display-blood-type"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('profile-form');
+        const profileDisplay = document.getElementById('profile-display');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const weeksPregnant = document.getElementById('weeks-pregnant').value;
+            const dueDate = document.getElementById('due-date').value;
+            const babyName = document.getElementById('baby-name').value;
+            const age = document.getElementById('age').value;
+            const height = document.getElementById('height').value;
+            const weight = document.getElementById('weight').value;
+            const bloodType = document.getElementById('blood-type').value;
+
+            document.getElementById('display-weeks-pregnant').innerText = weeksPregnant;
+            document.getElementById('display-due-date').innerText = dueDate;
+            document.getElementById('display-baby-name').innerText = babyName;
+            document.getElementById('display-age').innerText = age;
+            document.getElementById('display-height').innerText = height;
+            document.getElementById('display-weight').innerText = weight;
+            document.getElementById('display-blood-type').innerText = bloodType;
+
+            form.style.display = 'none';
+            profileDisplay.style.display = 'block';
+        });
+    </script>
+
+    <div class="icons">
+        <div class="icon-container">
+            <a href="new home.html"><img src="home.jpg" alt="Home"></a>
+            <a href="new home.html">Home</a>
+        </div>
+        <div class="icon-container">
+            <a href="New Tracker 1.html"><img src="tracker.jpg" alt="Fetus Tracker"></a>
+            <a href="New Tracker 1.html">Fetus Tracker</a>
+        </div>
+        <div class="icon-container">
+            <a href="chatbot.html"><img src="Chatbot image.jpg" alt="Chatbot"></a>
+            <a href="chatbot.html">Chatbot</a>
+        </div>
+        <div class="icon-container">
+            <a href="user profile.html"><img src="profile.jpg" alt="User Profile"></a>
+            <a href="user profile.html">Profile</a>
+        </div>
+</body>
+</html>
+
+
+
+

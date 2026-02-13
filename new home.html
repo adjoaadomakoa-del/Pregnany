@@ -1,0 +1,1176 @@
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f9f0ff 0%, #e6f7ff 100%);
+            background-size: cover;
+            background-position: center;
+        }
+        .center-image {
+  display: block;
+  margin: 0 auto;
+  width: 50%; 
+  height: auto;
+}
+
+        .wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+        }
+        .wave path {
+            fill: #fd5ae2;
+        }
+        
+       
+        
+        .icons {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fd5ae2;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+          
+        .icon-container a {
+            color: #fff;
+            text-decoration: none;
+           
+        }
+        .icon-container img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+        }
+        .content {
+            padding: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // Display user info
+    document.getElementById('welcomeMessage').textContent = 
+        `Welcome, ${currentUser.firstName}!`;
+    
+    // Use pregnancy data
+    if (currentUser.dueDate) {
+        console.log('Due Date:', currentUser.dueDate);
+        console.log('LMP:', currentUser.lmpDate);
+    }
+    
+    // Logout button
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+        window.userManager.logout();
+    });
+
+
+// Update user profile
+function updateProfile() {
+    const success = window.userManager.updateUserProfile({
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value
+    });
+    
+    if (success) {
+        alert('Profile updated successfully!');
+    }
+}
+
+// Save pregnancy data
+function savePregnancyData() {
+    const pregnancyData = {
+        dueDate: document.getElementById('dueDate').value,
+        lmpDate: document.getElementById('lmpDate').value,
+        notes: document.getElementById('notes').value
+    };
+    
+    const success = window.userManager.savePregnancyData(pregnancyData);
+    
+    if (success) {
+        alert('Pregnancy data saved!');
+    }
+}
+</script>
+
+    <svg class="wave" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path d="M0,256L48,229.3C96,203,192,149,288,122.7C384,96,480,96,576,117.3C672,139,768,181,864,192C960,203,1056,181,1152,170.7C1248,160,1344,160,1392,160L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+    </svg>
+   
+    <div class="header">
+        <h1>Home Page</h1>
+    </div>
+    <div class="content">
+  <h2>Welcome to the HomePage</h2>
+  <p>Hi Bestie!. I am Here to guide you throgh your Pregnancy Journey❤️</p>
+  
+  <img src="home.jpg
+  " alt="Your Image" style="display: block; margin: 0 auto; width: 250px; height: 250px; border-radius: 50%; object-fit: cover;">
+</div>       
+    </div>
+    <div class="icons">
+        <div class="icon-container">
+            <a href="New Tracker 1.html"><img src="tracker.jpg" alt="Fetus Tracker"></a>
+            <a href="New Tracker 1.html">Fetus Tracker</a>
+        </div>
+        <div class="icon-container">
+            <a href="./mychatbot.html"><img src="Chatbot image.jpg" alt="Chatbot"></a>
+            <a href="./mychatbot.html">Chatbot</a>
+        </div>
+         <div class="icon-container">
+            <a href="A&R.html"><img src="A%R image.jpg" alt="Advise and Recommendation"></a>
+            <a href="A&R.html">Advise and Recommendation</a>
+        </div>
+        <div class="icon-container">
+            <a href="new user profile.html"><img src="profile.jpg" alt="User Profile"></a>
+            <a href="new user profile.html">Profile</a>
+        </div>
+    </div>
+</body>
+</html> 
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page - Pregnancy App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f9f0ff 0%, #e6f7ff 100%);
+            min-height: 100vh;
+        }
+        
+        .wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+            z-index: -1;
+        }
+        
+        .wave path {
+            fill: #fd5ae2;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            position: relative;
+        }
+        
+        .header h1 {
+            color: #8a2be2;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .user-info {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .user-info span {
+            color: #8a2be2;
+            font-weight: 600;
+        }
+        
+        .content {
+            padding: 40px 20px 100px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content h2 {
+            color: #8a2be2;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .content p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+        
+        .icons {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .icon-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .icon-container img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 8px;
+            object-fit: cover;
+            border: 2px solid #8a2be2;
+            padding: 3px;
+        }
+        
+        .icon-container span {
+            color: #8a2be2;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .logout-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #8a2be2 0%, #fd5ae2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .alert-message {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 600px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+        
+        .welcome-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .icon-container img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .icon-container span {
+                font-size: 0.75rem;
+            }
+            
+            .logout-btn {
+                top: 20px;
+                right: 20px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .icons {
+                padding: 10px 15px;
+            }
+            
+            .icon-container span {
+                font-size: 0.7rem;
+            }
+            
+            .header {
+                padding: 30px 15px 15px;
+            }
+            
+            .content {
+                padding: 30px 15px 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg class="wave" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path d="M0,256L48,229.3C96,203,192,149,288,122.7C384,96,480,96,576,117.3C672,139,768,181,864,192C960,203,1056,181,1152,170.7C1248,160,1344,160,1392,160L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+    </svg>
+    
+    <button class="logout-btn" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+    
+    <div class="header">
+        <h1><i class="fas fa-baby"></i> Pregnancy App</h1>
+        <div class="user-info">
+            Hello, <span id="welcomeMessage">User</span>!
+        </div>
+    </div>
+    
+    <div id="alertMessage" class="alert-message">
+        <i class="fas fa-info-circle"></i> <span id="alertText"></span>
+    </div>
+    
+    <div class="content">
+        <div class="welcome-section">
+            <h2>Welcome to Your Pregnancy Journey! <i class="fas fa-heart" style="color: #fd5ae2;"></i></h2>
+            <p>Hi Bestie! I'm here to guide you through every step of your beautiful pregnancy journey. ❤️</p>
+            <p>From tracking your baby's growth to getting personalized advice, this app is designed to support you every step of the way.</p>
+            
+            <img src="home.jpg" alt="Pregnancy Journey" class="profile-image">
+        </div>
+        
+        <p style="color: #8a2be2; font-weight: 600; margin-top: 30px;">
+            Explore our features below to make your pregnancy journey more comfortable and informed!
+        </p>
+    </div>
+    
+    <div class="icons">
+        <a href="New Tracker 1.html" class="icon-container">
+            <img src="tracker.jpg" alt="Fetus Tracker">
+            <span>Fetus Tracker</span>
+        </a>
+        <a href="./mychatbot.html" class="icon-container">
+            <img src="Chatbot image.jpg" alt="Chatbot">
+            <span>Chatbot</span>
+        </a>
+        <a href="A&R.html" class="icon-container">
+            <img src="A%R image.jpg" alt="Advise and Recommendation">
+            <span>Advice & Tips</span>
+        </a>
+        <a href="new user profile.html" class="icon-container">
+            <img src="profile.jpg" alt="User Profile">
+            <span>Profile</span>
+        </a>
+    </div>
+
+    <script>
+        // Show alert message
+        function showAlert(message, type = 'info') {
+            const alert = document.getElementById('alertMessage');
+            const alertText = document.getElementById('alertText');
+            
+            alertText.textContent = message;
+            alert.className = `alert-message alert-${type}`;
+            alert.style.display = 'flex';
+            
+            // Auto-hide after 5 seconds
+            if (type !== 'error') {
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        // Global user manager functions
+        const userManager = {
+            getCurrentUser: function() {
+                return JSON.parse(localStorage.getItem('currentUser'));
+            },
+            
+            logout: function() {
+                localStorage.removeItem('currentUser');
+                showAlert('Logged out successfully! Redirecting to login page...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'Login.html';
+                }, 1500);
+            },
+            
+            updateUserProfile: function(userData) {
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const currentUser = this.getCurrentUser();
+                
+                if (!currentUser) return false;
+                
+                const index = users.findIndex(u => u.id === currentUser.id);
+                if (index !== -1) {
+                    users[index] = { ...users[index], ...userData };
+                    localStorage.setItem('users', JSON.stringify(users));
+                    localStorage.setItem('currentUser', JSON.stringify(users[index]));
+                    return true;
+                }
+                return false;
+            }
+        };
+        
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = userManager.getCurrentUser();
+            
+            if (!currentUser) {
+                // Redirect to login if not logged in
+                window.location.href = 'Login.html';
+                return;
+            }
+            
+            // Display user info
+            document.getElementById('welcomeMessage').textContent = 
+                `${currentUser.firstName} ${currentUser.lastName}`;
+            
+            // Logout button
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                userManager.logout();
+            });
+            
+            // Show welcome message for first-time visitors
+            const lastVisit = localStorage.getItem('lastHomeVisit');
+            const today = new Date().toDateString();
+            
+            if (!lastVisit || lastVisit !== today) {
+                showAlert(`Welcome back, ${currentUser.firstName}! We're glad to have you here.`, 'success');
+                localStorage.setItem('lastHomeVisit', today);
+            }
+            
+            // Check if user has pregnancy data
+            if (currentUser.dueDate) {
+                // Calculate weeks pregnant
+                const dueDate = new Date(currentUser.dueDate);
+                const today = new Date();
+                const weeksPregnant = Math.floor((today - new Date(currentUser.dueDate)) / (1000 * 60 * 60 * 24 * 7));
+                
+                if (weeksPregnant > 0 && weeksPregnant < 42) {
+                    setTimeout(() => {
+                        showAlert(`You are approximately ${weeksPregnant} weeks pregnant! Check the Fetus Tracker for updates.`, 'info');
+                    }, 1000);
+                }
+            }
+            
+            // Make userManager globally accessible
+            window.userManager = userManager;
+        });
+        
+        // Update user profile
+        function updateProfile() {
+            const success = userManager.updateUserProfile({
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value
+            });
+            
+            if (success) {
+                showAlert('Profile updated successfully!', 'success');
+            }
+        }
+    </script>
+</body>
+</html> 
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page - Pregnancy App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f9f0ff 0%, #e6f7ff 100%);
+            min-height: 100vh;
+        }
+        
+        .wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+            z-index: -1;
+        }
+        
+        .wave path {
+            fill: #fd5ae2;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            position: relative;
+        }
+        
+        .header h1 {
+            color: #8a2be2;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .user-info {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .user-info span {
+            color: #8a2be2;
+            font-weight: 600;
+        }
+        
+        .content {
+            padding: 40px 20px 100px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content h2 {
+            color: #8a2be2;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .content p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+        
+        .icons {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .icon-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .icon-container img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 8px;
+            object-fit: cover;
+            border: 2px solid #8a2be2;
+            padding: 3px;
+        }
+        
+        .icon-container span {
+            color: #8a2be2;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        /* Logout Button Styles */
+        .logout-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #8a2be2 0%, #fd5ae2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        /* Logout Options Modal */
+        .logout-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logout-modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logout-modal h3 {
+            color: #8a2be2;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .logout-modal p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+        
+        .logout-modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .logout-modal-btn {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 120px;
+        }
+        
+        .logout-modal-btn.cancel {
+            background: #f0f0f0;
+            color: #666;
+        }
+        
+        .logout-modal-btn.cancel:hover {
+            background: #e0e0e0;
+        }
+        
+        .logout-modal-btn.confirm {
+            background: linear-gradient(135deg, #8a2be2 0%, #fd5ae2 100%);
+            color: white;
+        }
+        
+        .logout-modal-btn.confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .alert-message {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 600px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .welcome-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .icon-container img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .icon-container span {
+                font-size: 0.75rem;
+            }
+            
+            .logout-btn {
+                top: 20px;
+                right: 20px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .logout-modal-buttons {
+                flex-direction: column;
+            }
+            
+            .logout-modal-btn {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .icons {
+                padding: 10px 15px;
+            }
+            
+            .icon-container span {
+                font-size: 0.7rem;
+            }
+            
+            .header {
+                padding: 30px 15px 15px;
+            }
+            
+            .content {
+                padding: 30px 15px 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg class="wave" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path d="M0,256L48,229.3C96,203,192,149,288,122.7C384,96,480,96,576,117.3C672,139,768,181,864,192C960,203,1056,181,1152,170.7C1248,160,1344,160,1392,160L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+    </svg>
+    
+    <!-- Logout Button -->
+    <button class="logout-btn" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+    
+    <!-- Logout Confirmation Modal -->
+    <div class="logout-modal" id="logoutModal">
+        <div class="logout-modal-content">
+            <h3><i class="fas fa-sign-out-alt"></i> Logout Confirmation</h3>
+            <p>Are you sure you want to logout from your account?</p>
+            <div class="logout-modal-buttons">
+                <button class="logout-modal-btn cancel" id="cancelLogout">Cancel</button>
+                <button class="logout-modal-btn confirm" id="confirmLogout">Yes, Logout</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="header">
+        <h1><i class="fas fa-baby"></i> Pregnancy App</h1>
+        <div class="user-info">
+            Hello, <span id="welcomeMessage">User</span>!
+        </div>
+    </div>
+    
+    <div id="alertMessage" class="alert-message">
+        <i class="fas fa-info-circle"></i> <span id="alertText"></span>
+    </div>
+    
+    <div class="content">
+        <div class="welcome-section">
+            <h2>Welcome to Your Pregnancy Journey! <i class="fas fa-heart" style="color: #fd5ae2;"></i></h2>
+            <p>Hi Bestie! I'm here to guide you through every step of your beautiful pregnancy journey. ❤️</p>
+            <p>From tracking your baby's growth to getting personalized advice, this app is designed to support you every step of the way.</p>
+            
+            <img src="home.jpg" alt="Pregnancy Journey" class="profile-image">
+        </div>
+        
+        <p style="color: #8a2be2; font-weight: 600; margin-top: 30px;">
+            Explore our features below to make your pregnancy journey more comfortable and informed!
+        </p>
+    </div>
+    
+    <div class="icons">
+        <a href="New Tracker 1.html" class="icon-container">
+            <img src="tracker.jpg" alt="Fetus Tracker">
+            <span>Fetus Tracker</span>
+        </a>
+        <a href="./mychatbot.html" class="icon-container">
+            <img src="Chatbot image.jpg" alt="Chatbot">
+            <span>Chatbot</span>
+        </a>
+        <a href="A&R.html" class="icon-container">
+            <img src="A%R image.jpg" alt="Advise and Recommendation">
+            <span>Advice & Tips</span>
+        </a>
+        <a href="new user profile.html" class="icon-container">
+            <img src="profile.jpg" alt="User Profile">
+            <span>Profile</span>
+        </a>
+    </div>
+
+    <script>
+        // Enhanced Logout Functions
+        
+        // Show alert message
+        function showAlert(message, type = 'info') {
+            const alert = document.getElementById('alertMessage');
+            const alertText = document.getElementById('alertText');
+            
+            alertText.textContent = message;
+            alert.className = `alert-message alert-${type}`;
+            alert.style.display = 'flex';
+            
+            // Auto-hide after 5 seconds
+            if (type !== 'error') {
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        // Global user manager functions
+        const userManager = {
+            getCurrentUser: function() {
+                return JSON.parse(localStorage.getItem('currentUser'));
+            },
+            
+            // Enhanced logout function with options
+            logout: function(options = {}) {
+                const {
+                    clearRememberMe = true,
+                    showConfirmation = false,
+                    redirectDelay = 1500,
+                    redirectTo = 'Login.html'
+                } = options;
+                
+                // Clear user session
+                localStorage.removeItem('currentUser');
+                
+                // Clear remembered user if needed
+                if (clearRememberMe) {
+                    localStorage.removeItem('rememberedUser');
+                }
+                
+                // Log session end
+                const currentUser = this.getCurrentUser();
+                if (currentUser) {
+                    console.log(`User ${currentUser.username} logged out at ${new Date().toISOString()}`);
+                }
+                
+                // Show success message
+                showAlert('Logged out successfully! Redirecting...', 'success');
+                
+                // Redirect after delay
+                setTimeout(() => {
+                    window.location.href = redirectTo;
+                }, redirectDelay);
+                
+                return true;
+            },
+            
+            // Quick logout (no confirmation)
+            quickLogout: function() {
+                return this.logout({ showConfirmation: false });
+            },
+            
+            // Logout with session timeout
+            timeoutLogout: function(minutes = 30) {
+                showAlert(`Session expired due to inactivity. You have been logged out.`, 'info');
+                return this.logout({ redirectDelay: 3000 });
+            },
+            
+            // Force logout from all devices (for future implementation)
+            forceLogout: function() {
+                localStorage.clear();
+                showAlert('Logged out from all devices.', 'info');
+                setTimeout(() => {
+                    window.location.href = 'Login.html';
+                }, 2000);
+            },
+            
+            updateUserProfile: function(userData) {
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const currentUser = this.getCurrentUser();
+                
+                if (!currentUser) return false;
+                
+                const index = users.findIndex(u => u.id === currentUser.id);
+                if (index !== -1) {
+                    users[index] = { ...users[index], ...userData };
+                    localStorage.setItem('users', JSON.stringify(users));
+                    localStorage.setItem('currentUser', JSON.stringify(users[index]));
+                    return true;
+                }
+                return false;
+            }
+        };
+        
+        // Modal control functions
+        function showLogoutModal() {
+            const modal = document.getElementById('logoutModal');
+            modal.style.display = 'flex';
+            
+            // Disable body scroll
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function hideLogoutModal() {
+            const modal = document.getElementById('logoutModal');
+            modal.style.display = 'none';
+            
+            // Enable body scroll
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = userManager.getCurrentUser();
+            
+            if (!currentUser) {
+                // Redirect to login if not logged in
+                window.location.href = 'Login.html';
+                return;
+            }
+            
+            // Display user info
+            document.getElementById('welcomeMessage').textContent = 
+                `${currentUser.firstName} ${currentUser.lastName}`;
+            
+            // Logout button with confirmation modal
+            document.getElementById('logoutBtn').addEventListener('click', showLogoutModal);
+            
+            // Modal button events
+            document.getElementById('cancelLogout').addEventListener('click', hideLogoutModal);
+            document.getElementById('confirmLogout').addEventListener('click', function() {
+                userManager.logout();
+                hideLogoutModal();
+            });
+            
+            // Close modal when clicking outside
+            document.getElementById('logoutModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideLogoutModal();
+                }
+            });
+            
+            // Keyboard shortcuts for logout
+            document.addEventListener('keydown', function(e) {
+                // Ctrl + L for logout (with confirmation)
+                if (e.ctrlKey && e.key === 'l') {
+                    e.preventDefault();
+                    showLogoutModal();
+                }
+                
+                // Escape to close modal
+                if (e.key === 'Escape') {
+                    hideLogoutModal();
+                }
+            });
+            
+            // Auto-logout after inactivity (optional)
+            let inactivityTimer;
+            function resetInactivityTimer() {
+                clearTimeout(inactivityTimer);
+                // Logout after 30 minutes of inactivity (for demo)
+                inactivityTimer = setTimeout(() => {
+                    const shouldLogout = confirm('You have been inactive for 30 minutes. Would you like to stay logged in?');
+                    if (!shouldLogout) {
+                        userManager.timeoutLogout();
+                    } else {
+                        resetInactivityTimer(); // Reset timer if user chooses to stay
+                    }
+                }, 30 * 60 * 1000); // 30 minutes
+            }
+            
+            // Reset timer on user activity
+            ['mousemove', 'keypress', 'click', 'scroll'].forEach(event => {
+                document.addEventListener(event, resetInactivityTimer);
+            });
+            
+            // Initialize inactivity timer
+            resetInactivityTimer();
+            
+            // Show welcome message for first-time visitors
+            const lastVisit = localStorage.getItem('lastHomeVisit');
+            const today = new Date().toDateString();
+            
+            if (!lastVisit || lastVisit !== today) {
+                showAlert(`Welcome back, ${currentUser.firstName}! We're glad to have you here.`, 'success');
+                localStorage.setItem('lastHomeVisit', today);
+            }
+            
+            // Check if user has pregnancy data
+            if (currentUser.dueDate) {
+                // Calculate weeks pregnant
+                const dueDate = new Date(currentUser.dueDate);
+                const today = new Date();
+                const weeksPregnant = Math.floor((today - dueDate) / (1000 * 60 * 60 * 24 * 7));
+                
+                if (weeksPregnant > 0 && weeksPregnant < 42) {
+                    setTimeout(() => {
+                        showAlert(`You are approximately ${Math.abs(weeksPregnant)} weeks pregnant! Check the Fetus Tracker for updates.`, 'info');
+                    }, 1000);
+                }
+            }
+            
+            // Make userManager globally accessible
+            window.userManager = userManager;
+            
+            // Export logout function globally
+            window.logoutUser = function(options = {}) {
+                return userManager.logout(options);
+            };
+            
+            window.forceLogoutUser = function() {
+                return userManager.forceLogout();
+            };
+        });
+        
+        // Update user profile
+        function updateProfile() {
+            const success = userManager.updateUserProfile({
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value
+            });
+            
+            if (success) {
+                showAlert('Profile updated successfully!', 'success');
+            }
+        }
+    </script>
+</body>
+</html> -->

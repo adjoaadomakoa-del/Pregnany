@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .tracker-container {
+            padding: 20px;
+            text-align: center;
+        }
+        .week-selector {
+            margin-bottom: 20px;
+        }
+        .week-info {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Pregnancy Tracker</h1>
+    </div>
+    <div class="tracker-container">
+        <div class="week-selector">
+            <label for="week">Select Week:</label>
+            <select id="week" onchange="showWeekInfo(this.value)">
+                <option value="1">Week 1</option>
+                <option value="2">Week 2</option>
+                <option value="3">Week 3</option>
+                <option value="4">Week 4</option>
+                <option value="5">Week 5</option>
+                <option value="6">Week 6</option>
+                <option value="7">Week 7</option>
+                <option value="8">Week 8</option>
+                <option value="9">Week 9</option>
+                <option value="10">Week 10</option>
+                <option value="11">Week 11</option>
+                <option value="12">Week 12</option>
+                <option value="13">Week 13</option>
+                <option value="14">Week 14</option>
+                <option value="15">Week 15</option>
+                <option value="16">Week 16</option>
+                <option value="17">Week 17</option>
+                <option value="18">Week 18</option>
+                <option value="19">Week 19</option>
+                <option value="20">Week 20</option>
+                <option value="21">Week 21</option>
+                <option value="22">Week 22</option>
+                <option value="23">Week 23</option>
+                <option value="24">Week 24</option>
+                <option value="25">Week 25</option>
+                <option value="26">Week 26</option>
+                <option value="27">Week 27</option>
+                <option value="28">Week 28</option>
+                <option value="29">Week 29</option>
+                <option value="30">Week 30</option>
+                <option value="31">Week 31</option>
+                <option value="32">Week 32</option>
+                <option value="33">Week 33</option>
+                <option value="34">Week 34</option>
+                <option value="35">Week 35</option>
+                <option value="36">Week 36</option>
+                <option value="37">Week 37</option>
+                <option value="38">Week 38</option>
+                <option value="39">Week 39</option>
+                <option value="40">Week 40</option>
+            </select>
+        </div>
+        <div class="week-info" id="week-info"></div>
+    </div>
+
+    <script>
+        const weekInfo = {
+            1: "Congratulations! You're pregnant! This week, the fertilized egg is implanting in the uterus.",
+            2: "The embryo is growing and developing rapidly. The heart is starting to form.",
+            3: "The embryo's major organs are starting to develop. The neural tube is forming.",
+            4: "The embryo's heart is beating and pumping blood. The limbs are starting to form.",
+            5: "The embryo's brain and nervous system are developing. The senses are starting to form.",
+            6: "The embryo's digestive system is developing. The pancreas is starting to produce digestive enzymes.",
+            7: "The embryo's kidneys are functioning and producing urine. The liver is producing bile.",
+            8: "The embryo's fingers and toes are forming. The skin is starting to thicken.",
+            9: "The embryo's major organs are developed. The pancreas is producing insulin.",
+            10: "The embryo is now called a fetus. The organs are functioning and the fetus is growing rapidly.",
+            11: "The fetus's digestive system is practicing contractions. The pancreas is producing enzymes.",
+            12: "The fetus's pancreas is producing insulin. The thyroid gland is functioning.",
+            13: "The fetus's kidneys are producing urine. The liver is producing bile.",
+            14: "The fetus's skin is starting to thicken. The pancreas is producing digestive enzymes.",
+            15: "The fetus's nervous system is maturing. The senses are starting to develop.",
+            16: "The fetus's muscles are developing. The bones are starting to harden.",
+            17: "The fetus's skin is starting to thicken. The fat layers are forming.",
+            18: "The fetus's digestive system is fully formed. The pancreas is producing enzymes.",
+            19: "The fetus's kidneys are functioning and producing urine. The liver is producing bile.",
+            20: "The fetus is halfway through the pregnancy. The organs are fully formed and functioning.",
+            21: "The fetus's pancreas is producing insulin. The thyroid gland is functioning.",
+            22: "The fetus's skin is thickening. The fat layers are forming.",
+            23: "The fetus's nervous system is maturing. The senses are starting to develop.",
+            24: "The fetus's lungs are starting to produce surfactant. The fetus is practicing breathing.",
+            25: "The fetus's digestive system is fully formed. The pancreas is producing enzymes.",
+            26: "The fetus's kidneys are functioning and producing urine. The liver is producing bile.",
+            27: "The fetus's skin is thickening. The fat layers are forming.",
+            28: "The fetus's nervous system is maturing. The senses are starting to develop.",
+            29: "The fetus's pancreas is producing insulin. The thyroid gland is functioning.",
+            30: "The fetus's lungs are developing. The fetus is practicing breathing.",
+            31: "The fetus's digestive system is fully formed. The pancreas is producing enzymes.",
+            32: "The fetus's kidneys are functioning and producing urine. The liver is producing bile.",
+            33: "The fetus's skin is thickening. The fat layers are forming.",
+            34: "The fetus's nervous system is maturing. The senses are starting to develop.",
+            35: "The fetus's pancreas is producing insulin. The thyroid gland is functioning.",
+            36: "The fetus is gaining weight rapidly. The lungs are fully developed.",
+            37: "The fetus is fully developed and ready for birth.",
+            38: "The fetus is gaining weight rapidly. The skin is thickening.",
+            39: "The fetus is fully developed and ready for birth.",
+            40: "Congratulations! Your baby is due! Get ready for the arrival of your little one."
+        };
+
+        function showWeekInfo(week) {
+            const weekInfoDiv = document.getElementById("week-info");
+            weekInfoDiv.innerHTML = `<h2>Week ${week}</h2><p>${weekInfo[week]}</p>`;
+        }
+
+        // Show info for week 1 by default
+        showWeekInfo(1);
+    </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy Tracker</title>
+    <style>
+   body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: cornsilk;
+            background-size: cover;
+            background-position: center;
+        }
+        .wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+        }
+        .wave path {
+            fill: #fd5ae2;
+        }
+        .icons {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fd5ae2;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+          
+        .icon-container a {
+            color: #fff;
+            text-decoration: none;
+           
+        }
+        .icon-container img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 2px;
+        }
+        .content {
+            padding: 50px;
+            text-align: center;
+        }
+        .week-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin-bottom: 30px auto;
+            display: block;
+        }
+        .week-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            text-align: center;
+        }
+        .description {
+            padding: 20px;
+            text-align: center;
+        }
+        .nav-button {
+            padding: 10px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            background-color: #fd5ae2;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <svg class="wave" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path d="M0,256L48,229.3C96,203,192,149,288,122.7C384,96,480,96,576,117.3C672,139,768,181,864,192C960,203,1056,181,1152,170.7C1248,160,1344,160,1392,160L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+    </svg>
+    <div class="header">
+        <h1>Pregnancy Tracker Page</h1>
+    </div>
+    <div class="content">
+        <h2>Pregnancy Tracker</h2>
+        <p>Hey Mother😊! I'm here to give you visual representation of how the baby</p>
+        <p>look like at every week.</p>
+    </div>
+    <h1>Pregnancy Tracker</h1>
+    <div id="week-container"></div>
+    <div style="display: flex; justify-content: space-between; padding: 100px;">
+    <button class="nav-button" id="prev-button">Previous Week</button>
+    <button class="nav-button" id="next-button">Next Week</button>
+    </div>
+    <script>
+        let currentWeek = 1;
+        const weeks = [
+         { week: 1, image: 'week 1.jpg', description: 'Your baby is a tiny fertilized egg, about the size of a poppy seed.' },
+            { week: 2, image: 'week2.jpg', description: 'Your baby is a ball of cells called a blastocyst, about the size of a pinhead.' },
+            { week: 3, image: 'week3.jpg', description: 'Your baby is implanting in your uterus, about the size of a sesame seed.' },
+            { week: 4, image: 'week 4.jpg', description: 'Your baby is developing major organs, about the size of a grain of rice.' },
+            { week: 5, image: 'week 5.jpg', description: 'Your baby is a tiny fertilized egg, about the size of a poppy seed.' },
+            { week: 6, image: 'week 6.jpg', description: 'Your baby is a ball of cells called a blastocyst, about the size of a pinhead.' },
+            { week: 7, image: 'week7.jpg', description: 'Your baby is implanting in your uterus, about the size of a sesame seed.' },
+            { week: 8, image: 'week 8.jpg', description: 'Your baby is developing major organs, about the size of a grain of rice.' },
+            { week: 9, image: 'week 9.jpg', description: 'Your baby is a tiny fertilized egg, about the size of a poppy seed.' },
+            { week: 10, image: 'week 10.jpg', description: 'Your baby is a ball of cells called a blastocyst, about the size of a pinhead.' },
+            { week: 11, image: 'week 11.jpg', description: 'Your baby is implanting in your uterus, about the size of a sesame seed.' },
+            { week: 12, image: 'week 12.jpg', description: 'Your baby is developing major organs, about the size of a grain of rice.' },
+            { week: 13, image: 'week 13.jpg', description: 'Your baby is a tiny fertilized egg, about the size of a poppy seed.' },
+            { week: 14, image: 'week 14.jpg', description: 'Your baby is a ball of cells called a blastocyst, about the size of a pinhead.' },
+            { week: 15, image: 'week 15.jpg', description: 'Your baby is implanting in your uterus, about the size of a sesame seed.' },
+            { week: 16, image: 'week 16.jpg', description: 'Your baby is developing major organs, about the size of a grain of rice.' },
+            { week: 17, image: 'week 17.jpg', description: 'Your baby is a tiny fertilized egg, about the size of a poppy seed.' },
+            { week: 18, image: 'week 18.jpg', description: 'Your baby is a ball of cells called a blastocyst, about the size of a pinhead.' },
+            { week: 19, image: 'week 19.jpg', description: 'Your baby is implanting in your uterus, about the size of a sesame seed.' },
+            { week: 20, image: 'week 20.jpg', description: 'Your baby is developing major organs, about the size of a grain of rice.' },
+            { week: 21, image: 'week 21.jpg', description: 'Your baby is a tiny fertilized egg, about the size of a poppy seed.' },
+            { week: 22, image: 'week 22.jpg', description: 'Your baby is a ball of cells called a blastocyst, about the size of a pinhead.' },
+            { week: 23, image: 'week 23.jpg', description: 'Your baby is implanting in your uterus, about the size of a sesame seed.' },
+            { week: 24, image: 'week 24.jpg', description: 'Your baby is developing major organs, about the size of a grain of rice.' },
+            { week: 25, image: 'week 25.jpg', description: 'Your baby is a tiny fertilized egg, about the size of a poppy seed.' },
+            { week: 26, image: 'week 26.jpg', description: 'Your baby is a ball of cells called a blastocyst, about the size of a pinhead.' },
+            { week: 27, image: 'week 27.jpg', description: 'Your baby is implanting in your uterus, about the size of a sesame seed.' },
+            { week: 28, image: 'week 28.jpg', description: 'Your baby is developing major organs, about the size of a grain of rice.' },
+            { week: 29, image: 'week 29.jpg', description: 'Your baby is a tiny fertilized egg, about the size of a poppy seed.' },
+            { week: 30, image: 'week 30.jpg', description: 'Your baby is a ball of cells called a blastocyst, about the size of a pinhead.' },
+            { week: 31, image: 'week 31.jpg', description: 'Your baby is implanting in your uterus, about the size of a sesame seed.' },
+            { week: 32, image: 'week 32.jpg', description: 'Your baby is developing major organs, about the size of a grain of rice.' },
+            { week: 33, image: 'week 33.jpg', description: 'Your baby is a ball of cells called a blastocyst, about the size of a pinhead.' },
+            { week: 34, image: 'week 34.jpg', description: 'Your baby is implanting in your uterus, about the size of a sesame seed.' },
+            { week: 35, image: 'week 35.jpg', description: 'Your baby is developing major organs, about the size of a grain of rice.' },
+            { week: 36, image: 'week 36.jpg', description: 'Your baby is a tiny fertilized egg, about the size of a poppy seed.' },
+            { week: 37, image: 'week 37.jpg', description: 'Your baby is a ball of cells called a blastocyst, about the size of a pinhead.' },
+            { week: 38, image: 'week 38.jpg', description: 'Your baby is implanting in your uterus, about the size of a sesame seed.' },
+            { week: 39, image: 'week 39.jpg', description: 'Your baby is developing major organs, about the size of a grain of rice.' },
+            { week: 40, image: 'week 40.jpg', description: 'Your baby is fully developed and ready for birth, about 20 inches long.' },
+        ];
+    
+        const weekContainer = document.getElementById('week-container');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        function updateWeek() {
+            const current = weeks.find((week) => week.week === currentWeek);
+            weekContainer.innerHTML = '';
+            const weekImage = document.createElement('img');
+            weekImage.classList.add('week-image');
+            weekImage.src = current.image;
+            weekContainer.appendChild(weekImage);
+            const weekText = document.createElement('p');
+            weekText.textContent = `Week ${currentWeek}`;
+            weekContainer.appendChild(weekText);
+            const description = document.createElement('p');
+            description.classList.add('description');
+            description.textContent = current.description;
+            weekContainer.appendChild(description);
+            prevButton.disabled = currentWeek === 1;
+            nextButton.disabled = currentWeek === weeks.length;
+        }
+       prevButton.addEventListener('click', () => {
+    console.log('Previous button clicked');
+    currentWeek--;
+    updateWeek();
+});
+
+nextButton.addEventListener('click', () => {
+    console.log('Next button clicked');
+    currentWeek++;
+    updateWeek();
+});
+
+        updateWeek();
+    </script>
+    <div class="icons">
+        <div class="icon-container">
+            <a href="new home.html"><img src="home.jpg" alt="Home"></a>
+            <a href="new home.html">Home</a>
+        </div>
+        <div class="icon-container">
+            <a href="./mychatbot.html"><img src="Chatbot image.jpg" alt="Chatbot"></a>
+            <a href="./mychatbot.html">Chatbot</a>
+        </div>
+         <div class="icon-container">
+            <a href="A&R.html"><img src="A%R image.jpg" alt="Advise and Recommendation"></a>
+            <a href="A&R.html">Advise and Recommendation</a>
+        </div>
+        <div class="icon-container">
+            <a href="new user profile.html"><img src="profile.jpg" alt="User Profile"></a>
+            <a href="new user profile.html">Profile</a>
+        </div>
+    </div>
+</body>
+</html>
